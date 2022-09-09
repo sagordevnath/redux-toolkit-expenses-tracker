@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import deleteImage from "../../assets/images/delete.svg";
 import editImage from "../../assets/images/edit.svg";
 import {
@@ -10,11 +12,15 @@ export default function Transaction({ transaction }) {
     const { name, amount, type, id } = transaction || {};
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const handleEdit = () => {
         dispatch(editActive(transaction));
+        navigate('/');
+
     };
 
-    const handleDelete = () => {
+    const handleDelete = () => {        
         dispatch(removeTransaction(id));
     };
 
